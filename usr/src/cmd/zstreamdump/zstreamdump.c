@@ -54,7 +54,7 @@
 
 uint64_t total_write_size = 0;
 uint64_t total_stream_len = 0;
-FILE *send_stream = 0;
+FILE *send_stream = NULL;
 boolean_t do_byteswap = B_FALSE;
 boolean_t do_cksum = B_TRUE;
 
