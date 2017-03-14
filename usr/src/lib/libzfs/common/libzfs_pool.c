@@ -2773,7 +2773,7 @@ zpool_vdev_detach(zpool_handle_t *zhp, const char *path)
 
 	(void) strlcpy(zc.zc_name, zhp->zpool_name, sizeof (zc.zc_name));
 	if ((tgt = zpool_find_vdev(zhp, path, &avail_spare, &l2cache,
-	    NULL)) == 0)
+	    NULL)) == NULL)
 		return (zfs_error(hdl, EZFS_NODEVICE, msg));
 
 	if (avail_spare)
@@ -3080,7 +3080,7 @@ zpool_vdev_remove(zpool_handle_t *zhp, const char *path)
 
 	(void) strlcpy(zc.zc_name, zhp->zpool_name, sizeof (zc.zc_name));
 	if ((tgt = zpool_find_vdev(zhp, path, &avail_spare, &l2cache,
-	    &islog)) == 0)
+	    &islog)) == NULL)
 		return (zfs_error(hdl, EZFS_NODEVICE, msg));
 	/*
 	 * XXX - this should just go away.
@@ -3134,7 +3134,7 @@ zpool_clear(zpool_handle_t *zhp, const char *path, nvlist_t *rewindnvl)
 	(void) strlcpy(zc.zc_name, zhp->zpool_name, sizeof (zc.zc_name));
 	if (path) {
 		if ((tgt = zpool_find_vdev(zhp, path, &avail_spare,
-		    &l2cache, NULL)) == 0)
+		    &l2cache, NULL)) == NULL)
 			return (zfs_error(hdl, EZFS_NODEVICE, msg));
 
 		/*
